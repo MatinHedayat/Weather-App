@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { Rings } from 'react-loader-spinner';
 import { FiDelete } from 'react-icons/fi';
+import { BiMessageError } from 'react-icons/bi';
+import { MdOutlineErrorOutline } from 'react-icons/md';
 
 export default function App() {
   const [weather, setWeather] = useState({});
@@ -11,7 +13,7 @@ export default function App() {
   const [unit, setUnit] = useState('°C');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log(weather)
+  console.log(weather);
 
   const handleChangeUnit = () => {
     queryUnit === 'metric' ? setQueryUnit('imperial') : setQueryUnit('metric');
@@ -59,7 +61,7 @@ export default function App() {
   return (
     <>
       <img
-        className='w-full h-full absolute -z-10 object-cover brightness-75'
+        className='w-full h-full absolute -z-10 object-cover brightness-50'
         src='back.jpg'
         alt='background'
       />
@@ -88,7 +90,7 @@ export default function App() {
             onChange={(e) => setLocation(e.target.value)}
           />
           <button className='bg-white/20 w-1/5 flex items-center justify-center'>
-            <CiSearch className='text-white text-2xl' />
+            <CiSearch className='text-white text-2xl sm:text-3xl' />
           </button>
         </form>
 
@@ -100,44 +102,44 @@ export default function App() {
             wrapperClass='absolute w-max top-80 inset-x-1/2 -translate-x-1/2'
           />
         ) : error ? (
-          <p className='text-white/60 absolute w-max top-56 inset-x-1/2 -translate-x-1/2'>
-            Something went wrong ...
+          <p className='bg-slate-200/10 text-white/60 flex items-center gap-2 absolute w-max top-56 inset-x-1/2 -translate-x-1/2 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-xl'>
+            <MdOutlineErrorOutline /> Something went wrong ...
           </p>
         ) : (
           <>
             <div className='w-4/5 absolute top-44 inset-x-1/2 -translate-x-1/2 text-white'>
               <div>
-                <span>{weather.name}</span>
-                <span className='bg-white/10 text-xs px-3 py-1 ml-2 backdrop-blur-md rounded-lg'>
+                <span className='sm:text-lg'>{weather.name}</span>
+                <span className='bg-white/10 text-xs px-3 py-1 ml-2 backdrop-blur-md rounded-lg sm:text-sm'>
                   {weather.sys?.country}
                 </span>
               </div>
               <h2
-                className='text-7xl font-bold mt-2'
+                className='text-7xl font-bold mt-2 sm:text-[7rem]'
                 onClick={handleChangeUnit}
               >
                 {weather.main?.temp.toFixed()}
                 {unit}
               </h2>
-              <p className='absolute top-3 -right-8 flex items-center text-lg font-medium -rotate-90'>
+              <p className='absolute top-3 -right-8 flex items-center text-lg font-medium -rotate-90 sm:top-12 sm:text-xl'>
                 {weather.weather ? weather.weather[0]?.main : ''}
                 <img
-                  className='w-16 h-16 ml-2'
+                  className='w-16 ml-2 sm:w-20'
                   src={`https://openweathermap.org/img/wn/${
                     weather.weather ? weather.weather[0]?.icon : ''
                   }@2x.png`}
                   alt=''
                 />
               </p>
-              <div className='flex flex-wrap items-center justify-between gap-2 mt-8'>
+              <div className='flex flex-wrap items-center justify-between gap-2 mt-8 sm:flex-col sm:items-start sm:pl-4'>
                 <div className='text-sm flex items-center gap-2'>
-                  <p>Longitude :</p>
+                  <p className='sm:w-20'>Longitude :</p>
                   <p className='bg-white/10 px-2 py-1 backdrop-blur-sm rounded-lg'>
                     {weather.coord?.lon}
                   </p>
                 </div>
                 <div className='text-sm flex items-center gap-2'>
-                  <p>Latitude :</p>
+                  <p className='sm:w-20'>Latitude :</p>
                   <p className='bg-white/10 px-2 py-1 backdrop-blur-sm rounded-lg'>
                     {weather.coord?.lat}
                   </p>
@@ -148,14 +150,16 @@ export default function App() {
             <div className='w-4/5 absolute bottom-28 inset-x-1/2 -translate-x-1/2 text-white flex flex-wrap items-center justify-center gap-4'>
               {detailValues.map((item) => (
                 <div
-                  className='bg-white/20 w-[45%] flex flex-col items-center gap-1 backdrop-blur-sm py-4 rounded-2xl'
+                  className='bg-white/20 w-[45%] flex flex-col items-center gap-1 backdrop-blur-sm py-4 rounded-3xl'
                   key={item.title}
                 >
-                  <p className='text-xl font-semibold'>
+                  <p className='text-xl font-semibold sm:text-2xl'>
                     {item.value}
                     <span className='text-white/90 ml-1'>{item.unit}</span>
                   </p>
-                  <p className='text-lg text-white/80'>{item.title}</p>
+                  <p className='text-lg text-white/80 sm:text-xl'>
+                    {item.title}
+                  </p>
                 </div>
               ))}
             </div>

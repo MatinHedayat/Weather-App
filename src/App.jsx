@@ -61,14 +61,14 @@ export default function App() {
   return (
     <>
       <img
-        className='w-full h-full absolute -z-10 object-cover brightness-50'
+        className='w-full h-full fixed -z-10 object-cover brightness-[60%]'
         src='back.jpg'
         alt='background'
       />
 
-      <div className='max-w-3xl h-screen relative mx-auto'>
+      <div className='max-w-3xl mx-auto px-6 py-12 flex flex-col items-center gap-y-12'>
         <form
-          className='w-4/5 absolute top-16 inset-x-1/2 -translate-x-1/2 flex justify-between backdrop-blur-sm overflow-hidden border-2 border-white/20 rounded-3xl'
+          className='w-full flex justify-between backdrop-blur-sm overflow-hidden border-2 border-white/20 rounded-3xl'
           onSubmit={handleSubmit}
         >
           <button
@@ -106,8 +106,8 @@ export default function App() {
             <MdOutlineErrorOutline /> Something went wrong ...
           </p>
         ) : (
-          <>
-            <div className='w-4/5 absolute top-44 inset-x-1/2 -translate-x-1/2 text-white'>
+          <div className='w-full flex flex-col gap-y-16 sm:px-4'>
+            <div className='text-white relative'>
               <div>
                 <span className='sm:text-lg'>{weather.name}</span>
                 <span className='bg-white/10 text-xs px-3 py-1 ml-2 backdrop-blur-md rounded-lg sm:text-sm'>
@@ -121,7 +121,7 @@ export default function App() {
                 {weather.main?.temp.toFixed()}
                 {unit}
               </h2>
-              <p className='absolute top-3 -right-8 flex items-center text-lg font-medium -rotate-90 sm:top-12 sm:text-xl'>
+              <p className='absolute top-6 -right-10 flex items-center text-lg font-medium -rotate-90 sm:top-12 sm:text-xl sm:-right-12'>
                 {weather.weather ? weather.weather[0]?.main : ''}
                 <img
                   className='w-16 ml-2 sm:w-20'
@@ -131,7 +131,7 @@ export default function App() {
                   alt=''
                 />
               </p>
-              <div className='flex flex-wrap items-center justify-between gap-2 mt-8 sm:flex-col sm:items-start sm:pl-4'>
+              <div className='flex flex-col gap-2 mt-6'>
                 <div className='text-sm flex items-center gap-2'>
                   <p className='sm:w-20'>Longitude :</p>
                   <p className='bg-white/10 px-2 py-1 backdrop-blur-sm rounded-lg'>
@@ -147,7 +147,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className='w-4/5 absolute bottom-28 inset-x-1/2 -translate-x-1/2 text-white flex flex-wrap items-center justify-center gap-4'>
+            <div className='text-white flex flex-wrap items-center justify-center gap-4'>
               {detailValues.map((item) => (
                 <div
                   className='bg-white/20 w-[45%] flex flex-col items-center gap-1 backdrop-blur-sm py-4 rounded-3xl'
@@ -163,7 +163,7 @@ export default function App() {
                 </div>
               ))}
             </div>
-          </>
+          </div>
         )}
       </div>
     </>

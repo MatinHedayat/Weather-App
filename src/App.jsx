@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { Rings } from 'react-loader-spinner';
 import { FiDelete } from 'react-icons/fi';
-import { BiMessageError } from 'react-icons/bi';
 import { MdOutlineErrorOutline } from 'react-icons/md';
 
 export default function App() {
@@ -13,7 +12,6 @@ export default function App() {
   const [unit, setUnit] = useState('°C');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log(weather);
 
   const handleChangeUnit = () => {
     queryUnit === 'metric' ? setQueryUnit('imperial') : setQueryUnit('metric');

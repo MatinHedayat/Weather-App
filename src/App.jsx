@@ -121,13 +121,16 @@ export default function App() {
               </h2>
               <p className='absolute top-6 -right-10 flex items-center text-lg font-medium -rotate-90 sm:top-12 sm:text-xl sm:-right-12'>
                 {weather.weather ? weather.weather[0]?.main : ''}
-                <img
-                  className='w-16 ml-2 sm:w-20'
-                  src={`https://openweathermap.org/img/wn/${
-                    weather.weather ? weather.weather[0]?.icon : ''
-                  }@2x.png`}
-                  alt=''
-                />
+
+                {weather.weather ? (
+                  <img
+                    className='w-16 ml-2 sm:w-20'
+                    src={`https://openweathermap.org/img/wn/${weather.weather[0]?.icon}@2x.png`}
+                    alt=''
+                  />
+                ) : (
+                  ''
+                )}
               </p>
               <div className='flex flex-col gap-2 mt-6'>
                 <div className='text-sm flex items-center gap-2'>

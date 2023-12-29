@@ -10,6 +10,7 @@
 
 ## Description
 Welcome to our project! This application is made with React and Tailwind. And you can easily see the weather information of any city or country you want by searching its name. This information includes things like temperature, pressure, humidity and geographical coordinates and more ...
+
 I hope you enjoy and look forward to your contributions!
 
 ## Contributing
